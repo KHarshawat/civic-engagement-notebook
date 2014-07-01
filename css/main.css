@@ -1,0 +1,113 @@
+
+/* ----- NAVBAR ----- */
+.navbar, a.title, a.title:hover {
+  background-color: #02a8f3;
+  color: white;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 1.5em;
+  display: block;
+  text-decoration: none;
+}
+body>.navbar {
+  border-radius: 0;
+  height: 200px;
+  margin-bottom: 30px;
+}
+input.form-control.searchbar{
+  width:40em;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+.title { margin-top: 1em;}
+.hr-blue {  border-top: 1px solid #2095f2; }
+input.form-control, input.form-control:hover, 
+input.form-control:active, input.form-control:focus 
+{
+  border-radius: 0;
+  border:none;
+  box-shadow: rgba(0, 0, 0, 0.258824) 0px 2px 5px 0px;
+}
+button.search-submit, button.search-submit:hover, 
+button.search-submit:focus {
+  background-color:#1875d1;
+  color:white;
+  border-radius: 2px;
+  border:none;
+  box-shadow: rgba(0, 0, 0, 0.258824) 0px 2px 5px 0px;
+
+}
+button.search-submit:hover { background-color:#135e9b;}
+
+
+/* ----- GRID ----- */
+.grid-container {
+  width:33%;
+  display: inline-block;
+  padding: 1em;
+}
+
+/* ----- RESULT ITEM ----- */
+.item-title { 
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  padding-bottom: 1em;
+}
+.item-container, .item-container:hover {
+  z-index: 2;
+  float:left;
+  width:100%;
+  height: 20em;
+  background-color: #02a8f3;
+  padding: 2em;
+  color:white;
+  box-shadow: rgba(0, 0, 0, 0.258824) 0px 2px 5px 0px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.item-container:hover {
+  box-shadow: rgba(0, 0, 0, 0.8) 0px 2px 5px 0px;
+}
+.item-descr {
+  max-height: 13em;
+  text-overflow: ellipsis;
+  white-space: wrap;
+  overflow: hidden;
+  font-weight: 200;
+}
+
+/* ----- INFO POPUP ----- */
+.popup-container {
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.258824) 0px 2px 5px 0px;
+  min-height: 20em;
+  border-bottom: 1px solid #ccc;
+  position: relative;
+  margin-bottom: 5em;
+  margin-top: 2em;
+}
+.popup-titlebar  {
+  background-color: #02a8f3;
+  min-height: 5em;
+  color: white;
+  font-size: 1.2em;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700px;
+  padding: 2em;
+}
+.popup-close {
+  color: #1875d1;
+  position: absolute;
+  top:.8em;
+  right: 1.5em;
+}
+.popup-close:hover { color:#135e9b;}
+.popup-descr {
+  background-color: white;
+  color: #666;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2em;
+  font-weight: 300px;
+  padding: 2em;
+}
