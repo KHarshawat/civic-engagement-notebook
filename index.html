@@ -1,24 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Starter Template for Bootstrap</title>
-
+    <meta charset='utf-8'>
+    <title>Sheetsee Table Demo</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
     <!-- Stylesheet -->
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300' rel='stylesheet' type='text/css'>
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-
   </head>
-
 <body>
-<div id="users">
+  <div id="users">
     <div class="navbar" role="navigation">
       <div class="container">
           <a class="title" href="#">Civic Engagement Notebook</a>
@@ -30,63 +23,50 @@
             <form class="navbar-form" role="search">
 
               <div class="form-group">
-                <input type="text" class="form-control searchbar search" placeholder="Search" />
+                <input type="text" id="js-listFilter" class="form-control searchbar search" placeholder="Search" />
               </div>
 
               <button type="submit" class="btn btn-default search-submit">Submit</button>
             </form>
           </div>
-
       </div>
     </div>
 
-    <div class="container">
-      <div class="row">
-        <ul class="list col-lg-10 col-lg-offset-1">
-        </ul>
-      </div>
+    <div id="js-list" class="container">
     </div>
+  </div>
 
-    <!-- <div class="row"> -->
-    <!--   <div class="col-lg-10 col-lg-offset-1"> -->
-    <!--     <div class="popup-container"> -->
-    <!--       <div class="popup-titlebar">Clear Streets <a href="#"><i class="fa fa-times fa-2x popup-close pull-right"></i></a></div> -->
-    <!--       <div class="popup-descr"> -->
-    <!--         On Jan 3rd 2012, the City of Chicago released Plow Tracker, an app that tracks the city's snow plows in real time. We want to thank the city for taking this innovative step towards open government. In the words of Dan O'Neil, "it exposed city data in a fun and timely way that got people talking about an essential city service." We wanted to help make it better, so we took the plows' locations and figured out which streets they're clearing. However, the urge to make this ClearStreets app only hit us on Thursday evening, 12 hours before the storm descended on our fair city. So this is a rough draft (see disclaimer), but it shows what can be done when the city embraces open data. The more data they release, the more useful stuff we can build. -->
-    <!--       </div> -->
+<script id="js-list" type="text/html">
+  <div class="row">
+    <ul class="list col-lg-10 col-lg-offset-1">
+      {{#rows}}
+        <li class="grid-container">
+          <div class="item-container">
+            <div class="item-title">{{name}}</div>
+            <div class="item-descr">{{description}}</div>
+          </div>
+         </li>
+      {{/rows}}
+    </ul>
+  </div>
+</script>
 
-    <!--     </div> -->
-    <!--   </div> -->
-</div>
-
-<script src="http://listjs.com/no-cdn/list.js"></script>
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<!-- Latest compiled and minified CSS -->
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.3.4/tabletop.min.js"></script>
-<script type="text/javascript" src='js/sheetsee.js'></script>
-<script>
-  $(function() {
-    var options = {
-      valueNames: [ 'js-title', 'js-desc' ]
-    };
-
+<script type='text/javascript' src='../js/sheetsee.js'></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
     var URL = "1bTy1VhP5SoufoKOJyh6I3TzonKV4KlC8fshVwyxK4FI"
-    Tabletop.init( { key: URL, callback: myData, simpleSheet: true } )
-    function myData(items) {
-      items.forEach(function(item) {
-        $('ul').append('<li class="grid-container">' +
-          '<div class="item-container">' +
-            '<div class="item-title js-title">' + item.name + '</div>' +
-            '<div class="item-descr js-desc">' + item.description + '</div>' +
-          '</div></li>');
-      });
-      var userList = new List('users', options);
-    }
-  });
+    Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } )
+  })
+
+  function showInfo(data) {
+    var tableOptions = {"data": data
+    , "pagination": 1000, "tableDiv": "#js-list", "filterDiv": "#js-listFilter"}
+    Sheetsee.makeTable(tableOptions)
+    Sheetsee.initiateTableFilter(tableOptions)
+  }
 </script>
 
 </body>
